@@ -1,0 +1,37 @@
+{
+    "name": "raxos/reflection",
+    "description": "Reflection utilities used in Raxos.",
+    "license": "mit",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "type": "library",
+    "authors": [
+        {
+            "name": "Bas Milius",
+            "email": "bas@mili.us"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "src/functions.php"
+        ],
+        "psr-4": {
+            "Raxos\\Reflection\\": "src/"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "8.4"
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../*",
+            "symlink": true
+        }
+    ],
+    "require": {
+        "raxos/contract": "*"
+    }
+}
