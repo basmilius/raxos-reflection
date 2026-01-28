@@ -1,9 +1,8 @@
 <?php
 declare(strict_types=1);
 
-namespace Raxos\Foundation;
+namespace Raxos\Reflection;
 
-use Raxos\Reflection\ClassReflector;
 use ReflectionClass;
 use ReflectionException;
 

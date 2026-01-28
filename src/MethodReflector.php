@@ -9,7 +9,6 @@ use Raxos\Contract\SerializableInterface;
 use ReflectionException;
 use ReflectionMethod;
 use function implode;
-use function Raxos\Foundation\reflect;
 
 /**
  * Class MethodReflector
