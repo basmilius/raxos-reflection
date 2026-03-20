@@ -18,6 +18,7 @@ use ReflectionUnionType;
 use Reflector;
 use Stringable;
 use UnitEnum;
+use function array_all;
 use function array_any;
 use function array_key_last;
 use function array_map;
@@ -131,7 +132,7 @@ final readonly class TypeReflector implements ReflectorInterface
         }
 
         if (str_contains($this->definition, '&')) {
-            return array_any($this->split(), static fn(self $type) => $type->accepts($input));
+            return array_all($this->split(), static fn(self $type) => $type->accepts($input));
         }
 
         return false;
@@ -228,7 +229,7 @@ final readonly class TypeReflector implements ReflectorInterface
      */
     public function isClass(): bool
     {
-        return class_exists($this->definitionNormalized);
+        return class_exists($this->definitionNormalized) && !interface_exists($this->definitionNormalized);
     }
 
     /**
@@ -418,7 +419,7 @@ final readonly class TypeReflector implements ReflectorInterface
         }
 
         if ($type instanceof ReflectionParameter || $type instanceof ReflectionProperty) {
-            return $type->getType()->allowsNull();
+            return $type->getType()?->allowsNull() ?? true;
         }
 
         if ($type instanceof ReflectionType) {

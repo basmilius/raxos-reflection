@@ -73,11 +73,11 @@ final readonly class ClassReflector implements ReflectorInterface
     /**
      * Returns the file name where the class is defined.
      *
-     * @return string
+     * @return string|false
      * @author Bas Milius <bas@mili.us>
      * @since 2.0.0
      */
-    public function getFileName(): string
+    public function getFileName(): string|false
     {
         return $this->reflection->getFileName();
     }
@@ -314,7 +314,7 @@ final readonly class ClassReflector implements ReflectorInterface
      */
     public function implements(string $interface): bool
     {
-        return $this->isInstantiable() && $this->getType()->matches($interface);
+        return $this->getType()->matches($interface);
     }
 
     /**

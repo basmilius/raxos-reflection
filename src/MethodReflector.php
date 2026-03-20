@@ -85,14 +85,20 @@ final readonly class MethodReflector implements ReflectorInterface, Serializable
     /**
      * Returns the type reflector for the return type of the method.
      *
-     * @return TypeReflector
+     * @return TypeReflector|null
      * @throws ReflectionException
      * @author Bas Milius <bas@mili.us>
      * @since 2.0.0
      */
-    public function getReturnType(): TypeReflector
+    public function getReturnType(): ?TypeReflector
     {
-        return new TypeReflector($this->reflection->getReturnType());
+        $type = $this->reflection->getReturnType();
+
+        if ($type === null) {
+            return null;
+        }
+
+        return new TypeReflector($type);
     }
 
     /**

@@ -149,7 +149,7 @@ final readonly class PropertyReflector implements ReflectorInterface
     }
 
     /**
-     * Returns the default value of the parameter.
+     * Returns the default value of the property.
      *
      * @return mixed
      * @author Bas Milius <bas@mili.us>
@@ -257,7 +257,7 @@ final readonly class PropertyReflector implements ReflectorInterface
     }
 
     /**
-     * Returns TRUE if the property is public.
+     * Returns TRUE if the property is protected.
      *
      * @return bool
      * @author Bas Milius <bas@mili.us>
