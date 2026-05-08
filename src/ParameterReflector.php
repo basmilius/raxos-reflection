@@ -166,7 +166,7 @@ final readonly class ParameterReflector implements ReflectorInterface
      */
     public function isNullable(): bool
     {
-        return $this->reflection->allowsNull();
+        return $this->reflection->getType()->allowsNull();
     }
 
     /**
@@ -190,7 +190,7 @@ final readonly class ParameterReflector implements ReflectorInterface
      */
     public function isRequired(): bool
     {
-        return !$this->reflection->allowsNull() && !$this->reflection->isOptional();
+        return !$this->reflection->getType()->allowsNull() && !$this->reflection->isOptional();
     }
 
     /**
