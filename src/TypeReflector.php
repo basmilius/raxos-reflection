@@ -20,6 +20,7 @@ use Stringable;
 use UnitEnum;
 use function array_all;
 use function array_any;
+use function array_key_exists;
 use function array_key_last;
 use function array_map;
 use function call_user_func;
@@ -31,7 +32,7 @@ use function interface_exists;
 use function is_a;
 use function is_iterable;
 use function is_string;
-use function preg_split;
+use function preg_replace;
 use function str_contains;
 use function str_replace;
 
@@ -84,7 +85,7 @@ final readonly class TypeReflector implements ReflectorInterface
      */
     public function __construct(Reflector|ReflectionType|string $type)
     {
-        $this->definition = $this->resolveDefinition($type);
+        $this->definition = preg_replace('/^\(([^()]*)\)$/', '$1', $this->resolveDefinition($type));
         $this->definitionNormalized = str_replace('?', '', $this->definition);
         $this->isNullable = $this->resolveIsNullable($type);
     }
@@ -115,7 +116,7 @@ final readonly class TypeReflector implements ReflectorInterface
             };
         }
 
-        if ($this->isClass()) {
+        if ($this->isClass() || $this->isInterface()) {
             if (is_string($input)) {
                 return $this->matches($input);
             }
@@ -193,7 +194,7 @@ final readonly class TypeReflector implements ReflectorInterface
      */
     public function isBuiltIn(): bool
     {
-        return isset(self::BUILTINS[$this->definitionNormalized]);
+        return array_key_exists($this->definitionNormalized, self::BUILTINS);
     }
 
     /**
@@ -328,7 +329,7 @@ final readonly class TypeReflector implements ReflectorInterface
     {
         return array_map(
             static fn(string $type) => new self($type),
-            preg_split('/[&|]/', $this->definition)
+            explode(str_contains($this->definition, '|') ? '|' : '&', $this->definition)
         );
     }
 
@@ -388,7 +389,7 @@ final readonly class TypeReflector implements ReflectorInterface
 
         if ($type instanceof ReflectionUnionType) {
             return implode('|', array_map(
-                $this->resolveDefinition(...),
+                fn(ReflectionType $part): string => $part instanceof ReflectionIntersectionType ? '(' . $this->resolveDefinition($part) . ')' : $this->resolveDefinition($part),
                 $type->getTypes()
             ));
         }

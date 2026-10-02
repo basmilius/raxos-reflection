@@ -167,7 +167,7 @@ final readonly class ClassReflector implements ReflectorInterface
      */
     public function getProperty(string $name): ?PropertyReflector
     {
-        return new PropertyReflector($this->reflection->getProperty($name));
+        return $this->reflection->hasProperty($name) ? new PropertyReflector($this->reflection->getProperty($name)) : null;
     }
 
     /**
@@ -242,7 +242,7 @@ final readonly class ClassReflector implements ReflectorInterface
      */
     public function getMethod(string $name): ?MethodReflector
     {
-        return new MethodReflector($this->reflection->getMethod($name));
+        return $this->reflection->hasMethod($name) ? new MethodReflector($this->reflection->getMethod($name)) : null;
     }
 
     /**
