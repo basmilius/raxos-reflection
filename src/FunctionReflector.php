@@ -65,11 +65,11 @@ final readonly class FunctionReflector implements ReflectorInterface
     /**
      * Returns the filename where the function is defined.
      *
-     * @return string
+     * @return string|false|false|false
      * @author Bas Milius <bas@mili.us>
-     * @since 2.0.0
+     * @since 3.2.0
      */
-    public function getFileName(): string
+    public function getFileName(): string|false
     {
         return $this->reflection->getFileName();
     }

@@ -153,10 +153,18 @@ final readonly class PropertyReflector implements ReflectorInterface
      *
      * @return mixed
      * @author Bas Milius <bas@mili.us>
-     * @since 2.0.0
+     * @since 3.2.0
      */
     public function getDefaultValue(): mixed
     {
+        if ($this->isPromoted()) {
+            $parameter = $this->getClass()->getConstructor()?->getParameter($this->getName());
+
+            if ($parameter?->hasDefaultValue()) {
+                return $parameter->getDefaultValue();
+            }
+        }
+
         return $this->reflection->getDefaultValue();
     }
 

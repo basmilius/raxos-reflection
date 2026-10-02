@@ -367,7 +367,7 @@ final readonly class TypeReflector implements ReflectorInterface
      * @return string
      * @throws ReflectionException
      * @author Bas Milius <bas@mili.us>
-     * @since 2.0.0
+     * @since 3.2.0
      */
     private function resolveDefinition(Reflector|ReflectionType|string $type): string
     {
@@ -376,7 +376,7 @@ final readonly class TypeReflector implements ReflectorInterface
         }
 
         if ($type instanceof ReflectionParameter || $type instanceof ReflectionProperty) {
-            return $this->resolveDefinition($type->getType());
+            return $type->getType() === null ? 'mixed' : $this->resolveDefinition($type->getType());
         }
 
         if ($type instanceof ReflectionClass) {
@@ -411,12 +411,12 @@ final readonly class TypeReflector implements ReflectorInterface
      *
      * @return bool
      * @author Bas Milius <bas@mili.us>
-     * @since 2.0.0
+     * @since 3.2.0
      */
     private function resolveIsNullable(Reflector|ReflectionType|string $type): bool
     {
         if (is_string($type)) {
-            return str_contains($type, '?') || str_contains($type, 'null');
+            return $type === 'mixed' || str_starts_with($type, '?') || preg_match('/(?:^|[|(&])null(?:$|[|)&])/', $type) === 1;
         }
 
         if ($type instanceof ReflectionParameter || $type instanceof ReflectionProperty) {
