@@ -146,6 +146,7 @@ final readonly class PropertyReflector implements ReflectorInterface
 
     /**
      * {@inheritdoc}
+     *
      * @author Bas Milius <bas@mili.us>
      * @since 2.0.0
      */
@@ -342,4 +343,5 @@ final readonly class PropertyReflector implements ReflectorInterface
 
         return new TypeReflector(ltrim($match[1], '\\'));
     }
+
 }

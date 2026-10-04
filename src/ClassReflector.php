@@ -49,6 +49,7 @@ final readonly class ClassReflector implements ReflectorInterface
 
     /**
      * {@inheritdoc}
+     *
      * @return class-string<TClass>
      * @author Bas Milius <bas@mili.us>
      * @since 2.0.0
@@ -334,4 +335,5 @@ final readonly class ClassReflector implements ReflectorInterface
     {
         return $this->getType()->matches($type);
     }
+
 }

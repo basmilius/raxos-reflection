@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-use Raxos\Reflection\ClassReflector;
+use Raxos\Reflection\{ClassReflector, PropertyReflector};
 use RaxosTests\Reflection\{UnitChild, UnitMarker};
 
-covers(Raxos\Reflection\PropertyReflector::class);
+covers(PropertyReflector::class);
 
 it('gets, sets and unsets initialized properties and reports uninitialized values', function (): void {
     $instance = new UnitChild();

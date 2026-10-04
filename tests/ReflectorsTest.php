@@ -34,9 +34,11 @@ it('preserves intersection groups in DNF union types', function (): void {
     expect($type->accepts(new ArrayIterator([1])))->toBeTrue()
         ->and($type->accepts(new ArrayObject([1])))->toBeFalse()
         ->and($type->accepts(new class implements Stringable {
+
             public function __toString(): string
             {
                 return 'value';
             }
+
         }))->toBeTrue();
 });

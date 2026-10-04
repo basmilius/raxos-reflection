@@ -87,6 +87,7 @@ final readonly class ParameterReflector implements ReflectorInterface
 
     /**
      * {@inheritdoc}
+     *
      * @author Bas Milius <bas@mili.us>
      * @since 2.0.0
      */
@@ -204,4 +205,5 @@ final readonly class ParameterReflector implements ReflectorInterface
     {
         return $this->reflection->isVariadic();
     }
+
 }

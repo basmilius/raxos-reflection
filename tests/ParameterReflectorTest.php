@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-use Raxos\Reflection\{FunctionReflector, MethodReflector};
+use Raxos\Reflection\{FunctionReflector, MethodReflector, ParameterReflector};
 use RaxosTests\Reflection\{UnitChild, UnitMarker};
 
-covers(Raxos\Reflection\ParameterReflector::class);
+covers(ParameterReflector::class);
 
 it('exposes class, function, attributes, required status and default values', function (): void {
     $method = new MethodReflector(new ReflectionMethod(UnitChild::class, 'method'));

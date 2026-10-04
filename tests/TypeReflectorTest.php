@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 use Raxos\Reflection\TypeReflector;
+use RaxosTests\Reflection\{BackedEnumValue, nullableNamedClass, UnitChild, UnitEnumValue};
 
 covers(TypeReflector::class);
 
@@ -30,14 +31,14 @@ it('classifies scalar, iterable, stringable and enum definitions', function (): 
         ->and(new TypeReflector('string')->isStringable())->toBeTrue()->and(new TypeReflector(Stringable::class)->isStringable())->toBeTrue()
         ->and(new TypeReflector(stdClass::class)->isStringable())->toBeFalse()
         ->and(new TypeReflector(stdClass::class)->isClass())->toBeTrue()->and(new TypeReflector(Countable::class)->isInterface())->toBeTrue()
-        ->and(new TypeReflector(RaxosTests\Reflection\UnitEnumValue::class)->isUnitEnum())->toBeTrue()
-        ->and(new TypeReflector(RaxosTests\Reflection\BackedEnumValue::class)->isBackedEnum())->toBeTrue()
-        ->and(new TypeReflector(RaxosTests\Reflection\BackedEnumValue::class)->isEnum())->toBeTrue()
+        ->and(new TypeReflector(UnitEnumValue::class)->isUnitEnum())->toBeTrue()
+        ->and(new TypeReflector(BackedEnumValue::class)->isBackedEnum())->toBeTrue()
+        ->and(new TypeReflector(BackedEnumValue::class)->isEnum())->toBeTrue()
         ->and(new TypeReflector(stdClass::class)->isEnum())->toBeFalse();
 });
 
 it('does not interpret null embedded in a class name as nullability', function (): void {
-    $type = new TypeReflector(RaxosTests\Reflection\nullableNamedClass::class);
+    $type = new TypeReflector(nullableNamedClass::class);
     expect($type->isNullable())->toBeFalse()->and($type->accepts(null))->toBeFalse();
 });
 
@@ -46,6 +47,6 @@ it('compares complete definitions and reflects named classes', function (): void
     expect($type->equals('?string'))->toBeTrue()->and($type->equals(new TypeReflector('?string')))->toBeTrue()
         ->and($type->equals('string'))->toBeFalse()->and($type->isNullable())->toBeTrue()
         ->and(new TypeReflector(stdClass::class)->class()->getName())->toBe(stdClass::class)
-        ->and(new TypeReflector(RaxosTests\Reflection\UnitChild::class)->getShortName())->toBe('UnitChild')
+        ->and(new TypeReflector(UnitChild::class)->getShortName())->toBe('UnitChild')
         ->and(new TypeReflector('MissingType')->accepts(1))->toBeFalse();
 });

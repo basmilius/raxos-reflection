@@ -103,6 +103,7 @@ final readonly class MethodReflector implements ReflectorInterface, Serializable
 
     /**
      * {@inheritdoc}
+     *
      * @author Bas Milius <bas@mili.us>
      * @since 2.0.0
      */
@@ -151,6 +152,7 @@ final readonly class MethodReflector implements ReflectorInterface, Serializable
 
     /**
      * {@inheritdoc}
+     *
      * @author Bas Milius <bas@mili.us>
      * @since 2.0.0
      */
@@ -164,6 +166,7 @@ final readonly class MethodReflector implements ReflectorInterface, Serializable
 
     /**
      * {@inheritdoc}
+     *
      * @throws ReflectionException
      * @author Bas Milius <bas@mili.us>
      * @since 2.0.0
