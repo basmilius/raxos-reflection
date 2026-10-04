@@ -6,7 +6,7 @@ use Raxos\Reflection\FunctionReflector;
 covers(FunctionReflector::class);
 
 it('wraps closures and native reflections and locates parameters by index or name', function (): void {
-    $closure = static fn (int $count = 3, ?string $label = null): string => ($label ?? 'unit') . ':' . $count;
+    $closure = static fn(int $count = 3, ?string $label = null): string => ($label ?? 'unit') . ':' . $count;
     foreach ([$closure, new ReflectionFunction($closure)] as $input) {
         $function = new FunctionReflector($input);
         expect($function->invokeArgs())->toBe('unit:3')->and($function->invokeArgs(['count' => 4, 'label' => 'custom']))->toBe('custom:4')

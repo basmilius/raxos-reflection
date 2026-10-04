@@ -21,7 +21,7 @@ it('accepts names, instances and existing native or wrapped reflectors', functio
 
 it('enumerates members with visibility filters and locates optional members', function (): void {
     $class = new ClassReflector(UnitChild::class);
-    $names = static fn (iterable $members): array => array_map(static fn ($member): string => $member->getName(), iterator_to_array($members));
+    $names = static fn(iterable $members): array => array_map(static fn($member): string => $member->getName(), iterator_to_array($members));
     expect($names($class->getPublicProperties()))->not->toContain('private', 'protected')
         ->and($names($class->getProperties()))->toContain('private', 'protected', 'promoted')
         ->and($names($class->getPublicMethods()))->toContain('count', 'method', 'staticValue')

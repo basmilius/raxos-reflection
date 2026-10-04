@@ -11,7 +11,7 @@ it('gets, sets and unsets initialized properties and reports uninitialized value
     $class = new ClassReflector($instance);
     $property = $class->getProperty('uninitialized');
     expect($property->isInitialized($instance))->toBeFalse()->and($property->getValue($instance, 42))->toBe(42)
-        ->and(fn () => $property->getValue($instance))->toThrow(Error::class)
+        ->and(fn() => $property->getValue($instance))->toThrow(Error::class)
         ->and($property->accepts(3))->toBeTrue()->and($property->accepts('3'))->toBeFalse();
     $property->setValue($instance, 3);
     expect($property->getValue($instance))->toBe(3);
