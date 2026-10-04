@@ -60,7 +60,10 @@ final readonly class PropertyReflector implements ReflectorInterface
      * @author Bas Milius <bas@mili.us>
      * @since 2.0.0
      */
-    public function getValue(object $instance, mixed $default = null): mixed
+    public function getValue(
+        object $instance,
+        mixed $default = null
+    ): mixed
     {
         try {
             return $this->reflection->getValue($instance) ?? $default;
@@ -79,7 +82,10 @@ final readonly class PropertyReflector implements ReflectorInterface
      * @author Bas Milius <bas@mili.us>
      * @since 2.0.0
      */
-    public function setValue(object $instance, mixed $value): void
+    public function setValue(
+        object $instance,
+        mixed $value
+    ): void
     {
         $this->reflection->setValue($instance, $value);
     }
@@ -153,7 +159,7 @@ final readonly class PropertyReflector implements ReflectorInterface
      *
      * @return mixed
      * @author Bas Milius <bas@mili.us>
-     * @since 3.2.0
+     * @since 2.0.0
      */
     public function getDefaultValue(): mixed
     {
@@ -336,5 +342,4 @@ final readonly class PropertyReflector implements ReflectorInterface
 
         return new TypeReflector(ltrim($match[1], '\\'));
     }
-
 }

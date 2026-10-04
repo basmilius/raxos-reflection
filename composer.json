@@ -36,7 +36,7 @@
     ],
     "require": {
         "php": ">=8.5",
-        "raxos/contract": "*"
+        "raxos/contract": "^3.2"
     },
     "require-dev": {
         "pestphp/pest": "^5.0"
@@ -48,5 +48,10 @@
     },
     "scripts": {
         "test": "pest --compact"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "3.3.x-dev"
+        }
     }
 }

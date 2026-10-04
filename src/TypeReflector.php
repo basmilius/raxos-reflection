@@ -70,8 +70,31 @@ final readonly class TypeReflector implements ReflectorInterface
         'string'
     ];
 
+    /**
+     * Preserves the reflected type before normalization.
+     *
+     * @var string
+     * @author Bas Milius <bas@mili.us>
+     * @since 2.0.0
+     */
     private string $definition;
+
+    /**
+     * Caches normalized types so callers do not repeatedly inspect reflection unions.
+     *
+     * @var string
+     * @author Bas Milius <bas@mili.us>
+     * @since 2.0.0
+     */
     private string $definitionNormalized;
+
+    /**
+     * Records whether the reflected type accepts null independently from its named types.
+     *
+     * @var bool
+     * @author Bas Milius <bas@mili.us>
+     * @since 2.0.0
+     */
     public private(set) bool $isNullable;
 
     /**
@@ -367,7 +390,7 @@ final readonly class TypeReflector implements ReflectorInterface
      * @return string
      * @throws ReflectionException
      * @author Bas Milius <bas@mili.us>
-     * @since 3.2.0
+     * @since 2.0.0
      */
     private function resolveDefinition(Reflector|ReflectionType|string $type): string
     {
@@ -411,7 +434,7 @@ final readonly class TypeReflector implements ReflectorInterface
      *
      * @return bool
      * @author Bas Milius <bas@mili.us>
-     * @since 3.2.0
+     * @since 2.0.0
      */
     private function resolveIsNullable(Reflector|ReflectionType|string $type): bool
     {
@@ -429,5 +452,4 @@ final readonly class TypeReflector implements ReflectorInterface
 
         return false;
     }
-
 }

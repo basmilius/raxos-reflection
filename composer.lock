@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "12fb7679c834970a19f2908dc09ea68c",
+    "content-hash": "4e0988a5bfb361a03ac0adeff1d5033a",
     "packages": [
         {
             "name": "raxos/contract",
@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "../contract",
-                "reference": "d5c2929acdfb0b302d5296950777845fe4b8a456"
+                "reference": "c267c1157026a95862ba163b7f71fe8fc1028f25"
             },
             "require": {
                 "ext-pdo": "*",
@@ -22,6 +22,11 @@
                 "pestphp/pest": "^5.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "3.3.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Raxos\\Contract\\": "src/"

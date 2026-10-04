@@ -67,7 +67,7 @@ final readonly class FunctionReflector implements ReflectorInterface
      *
      * @return string|false|false|false
      * @author Bas Milius <bas@mili.us>
-     * @since 3.2.0
+     * @since 2.0.0
      */
     public function getFileName(): string|false
     {
@@ -148,5 +148,4 @@ final readonly class FunctionReflector implements ReflectorInterface
 
         return new ParameterReflector($parameter);
     }
-
 }

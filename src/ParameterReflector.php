@@ -162,7 +162,7 @@ final readonly class ParameterReflector implements ReflectorInterface
      *
      * @return bool
      * @author Bas Milius <bas@mili.us>
-     * @since 3.2.0
+     * @since 2.0.0
      */
     public function isNullable(): bool
     {
@@ -186,7 +186,7 @@ final readonly class ParameterReflector implements ReflectorInterface
      *
      * @return bool
      * @author Bas Milius <bas@mili.us>
-     * @since 3.2.0
+     * @since 2.0.0
      */
     public function isRequired(): bool
     {
@@ -204,5 +204,4 @@ final readonly class ParameterReflector implements ReflectorInterface
     {
         return $this->reflection->isVariadic();
     }
-
 }

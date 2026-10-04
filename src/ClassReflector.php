@@ -295,7 +295,10 @@ final readonly class ClassReflector implements ReflectorInterface
      * @author Bas Milius <bas@mili.us>
      * @since 2.0.0
      */
-    public function callStatic(string $method, mixed ...$args): mixed
+    public function callStatic(
+        string $method,
+        mixed ...$args
+    ): mixed
     {
         $className = $this->reflection->getName();
 
@@ -331,5 +334,4 @@ final readonly class ClassReflector implements ReflectorInterface
     {
         return $this->getType()->matches($type);
     }
-
 }
